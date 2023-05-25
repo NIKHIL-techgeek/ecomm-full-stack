@@ -1,15 +1,18 @@
-const express = require ('express')
-const colors=require('colors')
+import express from "express";
+import colors from "colors";
 // rest object
-const app= express()
+const app = express();
 
 // rest api - url pattern
-app.get('/',(req,res)=>{
-    res.send({message:'welcome to ecommer app'})
-})//for home 
+app.get("/", (req, res) => {
+  // res.send({message:'welcome to ecom app'}) aliter in html
+  res.send("<h1>welcome to ecomm app</h1>");
+}); //for home
 
 // PORT
-const PORT=8080
+const PORT = 8080;
 
 // run listen
-app.listen(PORT,()=>{console.log(`server running ${PORT}`.bgCyan.white)});
+app.listen(PORT, () => {
+  console.log(`server running ${PORT}`.bgCyan.white);
+});
