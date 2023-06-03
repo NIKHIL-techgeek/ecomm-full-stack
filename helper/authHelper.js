@@ -1,4 +1,4 @@
-//  first func for hash and second for decrpt , compare
+//  first func for hash and second for decrpt , compare - passwords
 
 import  hash  from "bcrypt";
 import bcrypt from bcrypt;
