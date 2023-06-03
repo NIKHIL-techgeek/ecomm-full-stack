@@ -1,5 +1,6 @@
 // used for registering users
 // kind od related to models
+import  {hashPassword}  from "../helper/authHelper.js";
 import userModel from "../models/userModel.js";
 export const registerController=async (req,res)=>{
     try
@@ -22,8 +23,15 @@ export const registerController=async (req,res)=>{
             return res.send({error:'address number is required'})
         }
 
-        const user=await userModel.findOne({email});
+        const existingUser=await userModel.findOne({email});
         // existing user
+        if (existingUser) {
+            return res.status(200).send({success:true,message:'already registered please login'})
+        }
+        // register user
+        const hashedPassword=await hashPassword(passwrod);
+        // save
+        const user= new userModel({name,email,address,phone,password:hashedPassword})
     }
     catch(error)
     {
