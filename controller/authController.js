@@ -53,7 +53,7 @@ export const registerController = async (req, res) => {
 };
 
 // POST LOGIN
-export const loginController = async () => {
+export const loginController = async (req,res) => {
   try {
     const { email, password } = req.body;
     // validation
@@ -78,23 +78,21 @@ export const loginController = async () => {
     }
     // token
     const token = await Jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "100d",
+      expiresIn: "7d",
     });
-    res
-      .status(200)
-      .send({
-        success: true,
-        message: "login successfully",
-        user: {
-          name: user.name,
-          email: user.email,
-          phone: user.phone,
-          address: user.address,
-        },
-        token,
-      });
+    res.status(200).send({
+      success: true,
+      message: "login successfully",
+      user: {
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.addrpaess,
+      },
+      token,
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ success: false, message: "eror in login", error });
+    res.status(500).send({ success: false, message: "error in login", error });
   }
 };
