@@ -71,6 +71,8 @@ export const loginController = async () => {
     if (!match) {
         return res.status(200).send({success:false,message:"invalid password"})
     }
+    // token
+    const token = await Jwt.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:'100d'})
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, message: "eror in login", error });
