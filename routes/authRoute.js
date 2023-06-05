@@ -1,12 +1,17 @@
 // if routing in seperate file then we need router - like this one
 import express from "express";
-import {registerController} from '../controller/authController.js'
+import {
+  registerController,
+  loginController,
+} from "../controller/authController.js";
 
 // router object
 const router = express.Router();
 // routing
 // REGISTER || METHOD POST
-router.post("/register",registerController)
+router.post("/register", registerController);
 
+// LOGIN || POST
+router.post("/login", loginController);
 
 export default router;
