@@ -55,24 +55,44 @@ export const registerController = async (req, res) => {
 // POST LOGIN
 export const loginController = async () => {
   try {
-    const{email, password}=req.body
+    const { email, password } = req.body;
     // validation
-    if(!email||!password)
-    {
-        return res.status(404).send({success:false,message:"invalid email or password"})
+    if (!email || !password) {
+      return res
+        .status(404)
+        .send({ success: false, message: "invalid email or password" });
     }
     // getting password from user - comparison
-    // check user 
-    const user= await userModel.findOne({email})
+    // check user
+    const user = await userModel.findOne({ email });
     if (!user) {
-        return res.status(404).send({success:false,message:"email not regsitered"})
+      return res
+        .status(404)
+        .send({ success: false, message: "email not regsitered" });
     }
-    const match= await comparePassword(password,user.password)
+    const match = await comparePassword(password, user.password);
     if (!match) {
-        return res.status(200).send({success:false,message:"invalid password"})
+      return res
+        .status(200)
+        .send({ success: false, message: "invalid password" });
     }
     // token
-    const token = await Jwt.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:'100d'})
+    const token = await Jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "100d",
+    });
+    res
+      .status(200)
+      .send({
+        success: true,
+        message: "login successfully",
+        user: {
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          address: user.address,
+        },
+        token,
+      });
   } catch (error) {
     console.log(error);
     res.status(500).send({ success: false, message: "eror in login", error });
