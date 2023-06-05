@@ -1,4 +1,4 @@
-import  {Jwt}  from "jsonwebtoken";
+import  Jwt  from "jsonwebtoken";
 
 // protect user - protected route token base
 // next object whenever req get , next validate then response send

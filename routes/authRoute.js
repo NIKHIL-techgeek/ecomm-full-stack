@@ -3,6 +3,7 @@ import express from "express";
 import {
   registerController,
   loginController,
+  testController,
 } from "../controller/authController.js";
 
 // router object
@@ -14,5 +15,8 @@ router.post("/register", registerController);
 
 // LOGIN || POST
 router.post("/login", loginController);
+
+// test route
+router.get("/test",testController);
 
 export default router;
