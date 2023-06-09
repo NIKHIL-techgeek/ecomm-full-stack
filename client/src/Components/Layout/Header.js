@@ -18,9 +18,9 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <NavLink to="/" className="navbar-brand" href="#">
-              ECOMM
+              ECOMMERCE
             </NavLink>
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
                   to="/"
@@ -43,7 +43,7 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <NavLink to="/Cart" className="nav-link" href="#">
-                  LogIn
+                  Cart {0}
                 </NavLink>
               </li>
               <li className="nav-item"></li>
