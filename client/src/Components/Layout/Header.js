@@ -18,7 +18,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <NavLink to="/" className="navbar-brand" href="#">
-              Hidden brand
+              ECOMM
             </NavLink>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
