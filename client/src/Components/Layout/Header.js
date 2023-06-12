@@ -24,26 +24,37 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink
                   to="/"
-                  className="nav-link active"
-                  aria-current="page"
-                  href="#"
+                  className="nav-link "
+         
+
                 >
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/Register" className="nav-link" href="#">
+                <NavLink
+                  to="/category"
+                  className="nav-link"
+                
+                >
+                  Category
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/Register" className="nav-link">
                   Register
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/Cart" className="nav-link" href="#">
+                <NavLink to="/Login" className="nav-link" >
                   LogIn
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/Cart" className="nav-link" href="#">
-                  Cart {0}
+                <NavLink to="/Cart" className="nav-link" >
+                  Cart {"("}
+                  {0}
+                  {")"}
                 </NavLink>
               </li>
               <li className="nav-item"></li>
