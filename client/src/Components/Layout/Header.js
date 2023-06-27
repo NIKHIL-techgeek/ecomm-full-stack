@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink , Link} from "react-router-dom";
+// import {FaShoppingBag} from "react-icons/fa"
 const Header = () => {
   return (
     <>
@@ -17,13 +18,18 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <NavLink to="/" className="navbar-brand">
-              Hidden brand
-            </NavLink>
+            <Link to="/" className="navbar-brand">
+            🛒 Ecommerce App
+            </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" aria-current="page">
                   Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/Category" className="nav-link" aria-current="page">
+                  Category
                 </NavLink>
               </li>
               <li className="nav-item">
