@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../Components/Layout/Layout";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Pagenotfound = () => {
   return (
