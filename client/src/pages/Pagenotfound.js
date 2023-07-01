@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../Components/Layout/Layout";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Pagenotfound = () => {
   return (
@@ -8,7 +8,7 @@ const Pagenotfound = () => {
       <div className="pnf">
         <h1 className="pnf-title">404</h1>
         <h2 className="pnf-heading">Oops! Page not found</h2>
-        <NavLink to="/" className="pnf-btn">Go back</NavLink>
+        <Link to="/" className="pnf-btn">Go back</Link>
       </div>
     </Layout>
   );

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../../styles/AuthStyles.css";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setemail] = useState("");
@@ -10,7 +11,7 @@ const Register = () => {
   const [phone, setphone] = useState("");
   const [address, setaddress] = useState("");
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   // form function
   const handleSubmit = async (e) => {
@@ -19,29 +20,30 @@ const Register = () => {
     // console.log(name, email, password, address, phone);
     // toast.success("Registered Successfully");
     try {
-      const res = await axios.post(
-        "/api/v1/auth/register",
-        { name, email, password, phone, address }
-      );
-      if (res.data.success) {
-        toast.success(res.data.message)
-        navigate('/login')
-      }
-      else
-      {
-        toast.error(res.data.message)
+      const res = await axios.post("/api/v1/auth/register", {
+        name,
+        email,
+        password,
+        phone,
+        address,
+      });
+      if (res && res.data.success) {
+        toast.success(res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     }
   };
-  
+
   return (
     <Layout title="Register -- Ecommer App">
-      <div className="register">
-        <h1>Register Page</h1>
+      <div className="form-container">
         <form onSubmit={handleSubmit}>
+          <h1>Register from</h1>
           <div className="mb-3">
             <input
               type="text"
