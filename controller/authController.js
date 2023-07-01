@@ -28,7 +28,7 @@ export const registerController = async (req, res) => {
     if (existingUser) {
       return res
         .status(200)
-        .send({ success: true, message: "already registered please login" });
+        .send({ success: false, message: "already registered please login" });
     }
     // register user
     const hashedPassword = await hashPassword(password);
@@ -53,7 +53,7 @@ export const registerController = async (req, res) => {
 };
 
 // POST LOGIN
-export const loginController = async (req,res) => {
+export const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
     // validation
@@ -98,7 +98,6 @@ export const loginController = async (req,res) => {
 };
 
 // test controller
-export const testController=(req,res)=>
-{
-  res.send('protected route')
+export const testController = (req, res) => {
+  res.send("protected route");
 };
