@@ -21,33 +21,32 @@ font-family: 'Poppins', sans-serif; */
 
 .nav-link {
   font-weight: 300 !important; /* overwrite existing clas*/
-
 }
 
 .active {
   border-bottom: 1px solid black;
 }
 
-.navbar-brand{
+.navbar-brand {
   font-weight: 700;
-  font-family: 'roboto', sans-serif;
+  font-family: "roboto", sans-serif;
   letter-spacing: 2px;
 }
 
 /* FOOTER  */
-.footer{
+.footer {
   color: white;
   padding: 25px;
   background-color: black;
   /* background: -webkit-gradient(to right, #434343, black); */
   background: linear-gradient(to right, #434343, black);
 }
-.footer a{
+.footer a {
   color: white;
   text-decoration: none;
   padding: 10px;
 }
-.footer a:hover{
+.footer a:hover {
   color: #ffefba;
   border-bottom: 1px solid #ffefba;
 }

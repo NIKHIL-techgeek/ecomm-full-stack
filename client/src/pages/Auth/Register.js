@@ -28,7 +28,7 @@ const Register = () => {
         address,
       });
       if (res && res.data.success) {
-        toast.success(res.data.message);
+        toast.success(res.data && res.data.message);
         navigate("/login");
       } else {
         toast.error(res.data.message);
@@ -43,7 +43,7 @@ const Register = () => {
     <Layout title="Register -- Ecommer App">
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <h1>Register from</h1>
+          <h3>REGISTER FORM</h3>
           <div className="mb-3">
             <input
               type="text"
