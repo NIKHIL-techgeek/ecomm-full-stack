@@ -5,7 +5,7 @@ import userModel from "../models/userModel.js";
 import Jwt from "jsonwebtoken";
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address,answer } = req.body;
+    const { name, email, password, phone, address, answer } = req.body;
     // validation
     if (!name) {
       return res.send({ error: "name is required" });
@@ -91,7 +91,7 @@ export const loginController = async (req, res) => {
         name: user.name,
         email: user.email,
         phone: user.phone,
-        address: user.addrpaess,
+        address: user.address,
       },
       token,
     });
