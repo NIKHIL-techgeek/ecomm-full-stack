@@ -5,7 +5,7 @@ import userModel from "../models/userModel.js";
 import Jwt from "jsonwebtoken";
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address,answer } = req.body;
     // validation
     if (!name) {
       return res.send({ error: "name is required" });
@@ -21,6 +21,9 @@ export const registerController = async (req, res) => {
     }
     if (!address) {
       return res.send({ error: "address number is required" });
+    }
+    if (!answer) {
+      return res.send({ error: "answer number is required" });
     }
 
     const existingUser = await userModel.findOne({ email });
@@ -39,6 +42,7 @@ export const registerController = async (req, res) => {
       address,
       phone,
       password: hashedPassword,
+      answer,
     }).save();
 
     res
