@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import { NavLink } from "react-router-dom";
 const UserMenu = () => {
   return (
-    <Layout>
+    <div>
       <div>
         <div className="list-group">
           <h4>Dashboard</h4>
@@ -21,7 +21,7 @@ const UserMenu = () => {
           </NavLink>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
