@@ -93,3 +93,4 @@ export const deleteCategoryController=async (req,res)=>{
     res.status(500).send({success:false,message:"error while deletting category"})
   }
 }
+
