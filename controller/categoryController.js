@@ -26,3 +26,58 @@ export const createCategoryController = async (req, res) => {
       .send({ success: false, error, message: "Error in category" });
   }
 };
+
+// update category
+export const updateCategoryController = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const { id } = req.params;
+    const category = await categoryModel.findByIdAndUpdate(
+      id,
+      { name, slug: slugify(name) },
+      { new: true }
+    );
+    res.status(200).send({
+      success: true,
+      message: "category updated successfully",
+      category,
+    });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ success: false, message: "error while updating category" });
+  }
+};
+
+// get all cat
+export const categoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.find({});
+    res
+      .status(200)
+      .send({ success: true, message: "Categories List", category });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while getting all category",
+      error,
+    });
+  }
+};
+
+// single category
+export const singleCategoryController = async (req,res) => {
+  try {
+        const category=await categoryModel.findOne({slug:req.params});
+        res.status(200).send({success:true,message:"Single Category getted successfully",category,})
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while getting the category",
+      error,
+    });
+  }
+};
