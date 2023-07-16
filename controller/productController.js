@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import productModel from "../models/productModel.js";
 import fs from "fs";
+import { log } from "util";
 export const createProductController = async (req, res) => {
   try {
     const { name, slug, description, price, category, quantity, shipping } =
@@ -86,3 +87,18 @@ export const getSingleProductController = async (req, res) => {
     });
   }
 };
+
+// get photo
+export const productPhotoController=async(req,res)=>{
+    try {
+        const product= await productModel.findById(req.params.pid).select("photo");
+        if (product.photo.data) {
+            res.set('Content-type',product.photo.contentType);
+            return res.status(200).send(product.photo.data);
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({success: false,
+            message: "Eror while getitng product product",product})
+    }
+}
