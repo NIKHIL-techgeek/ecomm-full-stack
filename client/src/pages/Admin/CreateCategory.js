@@ -1,8 +1,19 @@
-import React from "react";
+import React ,{useEffect,useState} from "react";
 import Layout from "../../Components/Layout/Layout";
 import AdminMenu from "../../Components/Layout/AdminMenu";
-
+import toast from "react-hot-toast";
 const CreateCategory = () => {
+  const [category,setCategory]=useState([]);
+
+  // get all category
+  const getAllCategory=async ()=>{
+    try {
+      
+    } catch (error) {
+      console.log(error); 
+      toast.error("Something went wrong in getting category")
+    }
+  }
   return (
     <Layout title={"Dashboard-Create Category"}>
       <div className="container-fluid m-3 p-3">
