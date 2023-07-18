@@ -51,26 +51,44 @@ const CreateCategory = () => {
   }, []);
 
   // update category
-  const handleUpdate=async(e)=>{
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-        const {data}=await axios.put(`/api/v1/category/update-category/${selected._id}`,{name:updatedName})
-        if (data.success) {
-          toast.success(`${updatedName} is updated`)
-          setSelected(null);
-          setUpdatedName("")
-          setVisible(false)
-          getAllCategory()
-        }
-        else
-        {
-          toast.error(data.message)
-        }
+      const { data } = await axios.put(
+        `/api/v1/category/update-category/${selected._id}`,
+        { name: updatedName }
+      );
+      if (data.success) {
+        toast.success(`${updatedName} is updated`);
+        setSelected(null);
+        setUpdatedName("");
+        setVisible(false);
+        getAllCategory();
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong in updatting ')
+      toast.error("Something went wrong in updatting ");
     }
-  }
+  };
+  // delete category
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await axios.delete(
+        `/api/v1/category/delete-category/${id}`
+      );
+      if (data.success) {
+        toast.success(`category is deleted`);
+        getAllCategory();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong in updatting ");
+    }
+  };
   return (
     <Layout title={"Dashboard-Create Category"}>
       <div className="container-fluid m-3 p-3">
@@ -105,11 +123,20 @@ const CreateCategory = () => {
                         <td style={{ paddingBottom: "10px" }}>
                           <button
                             className="btn btn-primary ms-2"
-                            onClick={() => {setVisible(true);setUpdatedName(c.name); setSelected(c)}}
+                            onClick={() => {
+                              setVisible(true);
+                              setUpdatedName(c.name);
+                              setSelected(c);
+                            }}
                           >
                             Edit
                           </button>
-                          <button className="btn btn-danger ms-2">
+                          <button
+                            className="btn btn-danger ms-2"
+                            onClick={() => {
+                              handleDelete(c._id);
+                            }}
+                          >
                             Delete
                           </button>
                         </td>
@@ -125,7 +152,11 @@ const CreateCategory = () => {
             footer={null}
             open={visible}
           >
-            <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate}/>
+            <CategoryForm
+              value={updatedName}
+              setValue={setUpdatedName}
+              handleSubmit={handleUpdate}
+            />
           </Modal>
         </div>
       </div>
