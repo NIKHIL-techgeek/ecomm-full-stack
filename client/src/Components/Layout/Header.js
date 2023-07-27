@@ -5,8 +5,10 @@ import { useAuth } from "../../context/Auth";
 import toast from "react-hot-toast";
 import Search from "antd/es/input/Search";
 import SearchInput from "../Form/SearchInput";
+import useCategory from "../../hooks/useCategory";
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
   const handleLogout = () => {
     setAuth({ ...auth, user: null, token: "" });
     localStorage.removeItem("auth");
@@ -32,21 +34,39 @@ const Header = () => {
               🛒 Ecommerce App
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput/>
+              <SearchInput />
               <li className="nav-item">
                 <NavLink to="/" className="nav-link" aria-current="page">
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/Category"
-                  className="nav-link"
-                  aria-current="page"
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/categories"}
+                  data-bs-toggle="dropdown"
                 >
-                  Category
-                </NavLink>
+                  Categories
+                </Link>
+                {categories?.map((c) => (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link className="dropdown-item" to={"/categories"}>
+                        All Categories
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  </ul>
+                ))}
               </li>
+
               {!auth?.user ? (
                 <>
                   <li className="nav-item">
