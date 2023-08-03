@@ -2,7 +2,7 @@ import slugify from "slugify";
 import productModel from "../models/productModel.js";
 import fs from "fs";
 import { log } from "util";
-import categoryModel from '../models/categoryModel.js'
+import categoryModel from "../models/categoryModel.js";
 export const createProductController = async (req, res) => {
   try {
     const { name, slug, description, price, category, quantity, shipping } =
@@ -240,25 +240,40 @@ export const searchProductController = async (req, res) => {
   }
 };
 
-export const relatedProductController = async (req,res)=>{
+export const relatedProductController = async (req, res) => {
   try {
-    const {pid,cid}=req.params
-    const products= await productModel.find({category:cid,_id:{$ne:pid}}).select("-photo").limit(3).populate("category")
-    res.status(200).send({success:true,products})
+    const { pid, cid } = req.params;
+    const products = await productModel
+      .find({ category: cid, _id: { $ne: pid } })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({ success: true, products });
   } catch (error) {
     console.log(error);
-    res.status(400).send({message:'error in showing similar prods',success:false,error})
+    res
+      .status(400)
+      .send({
+        message: "error in showing similar prods",
+        success: false,
+        error,
+      });
   }
-}
+};
 
 // get product by category
-export const productCategoryController = async(req,res)=>{
+export const productCategoryController = async (req, res) => {
   try {
-    const category =await categoryModel.findOne({slug:req.params.slug})
-    const products= await productModel.find({category}).populate('category')
-    res.status(200).send({success:true,category,products})
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+    const products = await productModel.find({ category }).populate("category");
+    res.status(200).send({ success: true, category, products });
   } catch (error) {
     console.log(error);
-    res.status(400).send({message:'error in getting product by category' ,success:false});
+    res
+      .status(400)
+      .send({
+        message: "error in getting product by category",
+        success: false,
+      });
   }
-}
+};
