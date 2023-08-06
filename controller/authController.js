@@ -145,7 +145,7 @@ export const testController = (req, res) => {
   res.send("protected route");
 };
 
-// update profile
+
 //update prfole
 export const updateProfileController = async (req, res) => {
   try {

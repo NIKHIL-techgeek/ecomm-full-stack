@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 const Profile = () => {
   //context
-  const [auth, setAuth] = useAuth();
+  const [auth, setAuth] = useAuth() || {};
   //state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +16,7 @@ const Profile = () => {
 
   //get user data
   useEffect(() => {
-    const { email, name, phone, address } = auth?.user;
+    const { email, name, phone, address } = auth?.user ||{};
     setName(name);
     setPhone(phone);
     setEmail(email);
