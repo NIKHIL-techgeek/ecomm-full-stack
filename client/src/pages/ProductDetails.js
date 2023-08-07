@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import "../styles/ProductDetailStyles.css"
 const ProductDetails = () => {
   // get products
   const params = useParams();
