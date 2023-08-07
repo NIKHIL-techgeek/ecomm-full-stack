@@ -1,24 +1,20 @@
-/* styles.css */
+.list-group-item {
+  background-color: #f0f0f0;
+  border: none;
+  color: #333;
+  padding: 10px;
+  margin: 5px 0;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
 
-.footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    background-color: #f5f5f5;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  .footer h4,
-  .footer p {
-    margin: 0;
-  }
-  
-  .footer p {
-    margin-top: 5px;
-  }
-  
-  .footer a {
-    margin: 0 5px;
-  }
-  
+.list-group-item:hover {
+  background-color: #e0e0e0;
+}
+
+/* Add custom styles to the h4 tag */
+.list-group h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
