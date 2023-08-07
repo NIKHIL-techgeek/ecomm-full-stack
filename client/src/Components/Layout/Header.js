@@ -13,13 +13,17 @@ const Header = () => {
   const [cart] = useCart();
   const categories = useCategory();
   const handleLogout = () => {
-    setAuth({ ...auth, user: null, token: "" });
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
     localStorage.removeItem("auth");
-    toast.success("Logout Successfuly");
+    toast.success("Logout Successfully");
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -27,6 +31,7 @@ const Header = () => {
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
@@ -38,11 +43,10 @@ const Header = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="nav-item">
-                <NavLink to="/" className="nav-link" aria-current="page">
+                <NavLink to="/" className="nav-link ">
                   Home
                 </NavLink>
               </li>
-
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -51,16 +55,13 @@ const Header = () => {
                 >
                   Categories
                 </Link>
-                {categories?.map((c) => (
-                  <ul className="dropdown-menu">
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to={`/categories/${c.slug}`}
-                      >
-                        All Categories
-                      </Link>
-                    </li>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/categories"}>
+                      All Categories
+                    </Link>
+                  </li>
+                  {categories?.map((c) => (
                     <li>
                       <Link
                         className="dropdown-item"
@@ -69,8 +70,8 @@ const Header = () => {
                         {c.name}
                       </Link>
                     </li>
-                  </ul>
-                ))}
+                  ))}
+                </ul>
               </li>
 
               {!auth?.user ? (
@@ -80,52 +81,54 @@ const Header = () => {
                       Register
                     </NavLink>
                   </li>
-
-                  <NavLink to="/login" className="nav-link">
-                    Login
-                  </NavLink>
+                  <li className="nav-item">
+                    <NavLink to="/login" className="nav-link">
+                      Login
+                    </NavLink>
+                  </li>
                 </>
               ) : (
                 <>
                   <li className="nav-item dropdown">
                     <NavLink
                       className="nav-link dropdown-toggle"
+                      href="#"
                       role="button"
                       data-bs-toggle="dropdown"
+                      style={{ border: "none" }}
                     >
                       {auth?.user?.name}
                     </NavLink>
-                    <ul class="dropdown-menu">
+                    <ul className="dropdown-menu">
                       <li>
                         <NavLink
                           to={`/dashboard/${
                             auth?.user?.role === 1 ? "admin" : "user"
                           }`}
-                          class="dropdown-item"
+                          className="dropdown-item"
                         >
-                          DashBoard
+                          Dashboard
                         </NavLink>
                       </li>
-                      <li className="nav-item">
+                      <li>
                         <NavLink
                           onClick={handleLogout}
                           to="/login"
-                          class="dropdown-item"
+                          className="dropdown-item"
                         >
-                          Log Out
+                          Logout
                         </NavLink>
                       </li>
                     </ul>
                   </li>
                 </>
               )}
-
               <li className="nav-item">
-                <Badge count={cart?.length} showZero>
-                  <NavLink to="/cart" className="nav-link">
-                    Cart 
-                  </NavLink>
-                </Badge>
+                <NavLink to="/cart" className="nav-link">
+                  <Badge count={cart?.length} showZero offset={[10, -5]}>
+                    Cart
+                  </Badge>
+                </NavLink>
               </li>
             </ul>
           </div>
