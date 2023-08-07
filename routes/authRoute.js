@@ -6,6 +6,7 @@ import {
   testController,
   forgotPasswordController,
   updateProfileController,
+  getOrdersController,
 } from "../controller/authController.js";
 import { isAdmin, requireSignIn } from "../middleware/authMiddleware.js";
 // router object
@@ -37,4 +38,6 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 // udpate profile
 router.put('/profile',requireSignIn,updateProfileController);
 
+// orders
+router.get('/orders',requireSignIn,getOrdersController);
 export default router;
